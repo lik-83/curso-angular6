@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DestinoViaje } from '../models/destino-viaje.model';
 
 @Component({
@@ -21,6 +21,11 @@ export class ListaDestinosComponent implements OnInit {
   guardar(nombre : string, url : string) : boolean {
     this.destinos.push(new DestinoViaje(nombre, url));
     return false;
+  }
+
+  elegido(d : DestinoViaje) {
+    this.destinos.forEach(d => d.setSelected(false));
+    d.setSelected(true);
   }
 
 }
