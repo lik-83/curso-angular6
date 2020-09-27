@@ -15,22 +15,25 @@ export class ListaDestinosComponent implements OnInit {
 
   @Output() onItemAdded: EventEmitter<DestinoViaje>
   updates: string[];
+  all;
 
   constructor(private destinosApiClient:DestinosApiClient,
     private store: Store<AppState>) { 
 
     this.onItemAdded = new EventEmitter();
     this.updates = [];
+    this.store.select(state => state.destinos.favorito)
+      .subscribe(data => {
+        const fav = data;
+        if (data != null) {
+          this.updates.push("Se ha elegido a " + data.nombre);
+        }
+      });
+    store.select(state => state.destinos.items)
+      .subscribe(items => this.all = items);
   }
 
   ngOnInit() {
-    this.store.select(state => state.destinos.favorito)
-    .subscribe(data => {
-      const fav = data;
-      if (data != null) {
-        this.updates.push("Se ha elegido a " + data.nombre);
-      }
-    });
   }
 
   agregado(d: DestinoViaje) {

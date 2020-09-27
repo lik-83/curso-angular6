@@ -86,16 +86,16 @@ export function reducerDestinosViajes(
           favorito: fav
         };
     }
-    // case DestinosViajesActionTypes.VOTE_UP: {
-    //     const d: DestinoViaje = (action as VoteUpAction).destino;
-    //     d.voteUp();
-    //     return { ...state };
-    // }
-    // case DestinosViajesActionTypes.VOTE_DOWN: {
-    //     const d: DestinoViaje = (action as VoteDownAction).destino;
-    //     d.voteDown();
-    //     return { ...state };
-    // }
+    case DestinosViajesActionTypes.VOTE_UP: {
+        const d: DestinoViaje = (action as VoteUpAction).destino;
+        d.voteUp();
+        return { ...state };
+    }
+    case DestinosViajesActionTypes.VOTE_DOWN: {
+        const d: DestinoViaje = (action as VoteDownAction).destino;
+        d.voteDown();
+        return { ...state };
+    }
   }
   return state;
 }
