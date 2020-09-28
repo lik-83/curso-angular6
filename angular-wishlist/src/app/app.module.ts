@@ -13,11 +13,14 @@ import { DestinoDetalleComponent } from './components/destino-detalle/destino-de
 import { FormDestinoViajeComponent } from './components/form-destino-viaje/form-destino-viaje.component';
 import { DestinosApiClient } from './models/destinos-api-client.model';
 import { DestinosViajesState, reducerDestinosViajes, initializeDestinosViajesState, DestinosViajesEffects  } from './models/destinos-viajes-state.model';
-import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login/login.component';
 import { ProtectedComponent } from './components/protected/protected/protected.component';
 import { AuthService } from './services/auth.service';
 import { UsuarioLogueadoGuard } from './guards/usuario-logueado/usuario-logueado.guard';
+import { VuelosComponent } from './components/vuelos/vuelos/vuelos.component';
+import { VuelosMainComponent } from './components/vuelos/vuelos-main/vuelos-main.component';
+import { VuelosMasInfoComponent } from './components/vuelos/vuelos-mas-info/vuelos-mas-info.component';
+import { VuelosDetalleComponent } from './components/vuelos/vuelos-detalle/vuelos-detalle.component';
 
 export interface AppState {
   destinos: DestinosViajesState
@@ -31,6 +34,13 @@ let reducersInitialState = {
   destinos: initializeDestinosViajesState()
 }
 
+export const childrenRoutesVuelos: Routes = [
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: 'main', component: VuelosMainComponent },
+  { path: 'mas-info', component: VuelosMasInfoComponent },
+  { path: ':id', component: VuelosDetalleComponent },
+];
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: ListaDestinosComponent },
@@ -40,6 +50,12 @@ const routes: Routes = [
     path: 'protected',
     component: ProtectedComponent,
     canActivate: [ UsuarioLogueadoGuard ]
+  },
+  {
+    path: 'vuelos',
+    component: VuelosComponent,
+    canActivate: [ UsuarioLogueadoGuard ],
+    children: childrenRoutesVuelos
   }
 ];
 
@@ -51,7 +67,11 @@ const routes: Routes = [
     DestinoDetalleComponent,
     FormDestinoViajeComponent,
     LoginComponent,
-    ProtectedComponent
+    ProtectedComponent,
+    VuelosComponent,
+    VuelosMainComponent,
+    VuelosMasInfoComponent,
+    VuelosDetalleComponent
   ],
   imports: [
     BrowserModule,
