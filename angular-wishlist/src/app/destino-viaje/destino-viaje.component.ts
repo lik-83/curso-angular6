@@ -2,7 +2,7 @@ import { Component, OnInit, Input, HostBinding, EventEmitter, Output } from '@an
 import { DestinoViaje } from '../models/destino-viaje.model';
 import { AppState } from '../app.module';
 import { Store } from '@ngrx/store';
-import { VoteUpAction, VoteDownAction } from '../models/destinos-viajes-state.model';
+import { VoteUpAction, VoteDownAction, DestinoBorrarAction } from '../models/destinos-viajes-state.model';
 
 
 @Component({
@@ -36,6 +36,11 @@ export class DestinoViajeComponent implements OnInit {
 
   voteDown() {
     this.store.dispatch(new VoteDownAction(this.destino));
+    return false;
+  }
+
+  borrar() {
+    this.store.dispatch(new DestinoBorrarAction(this.destino));
     return false;
   }
 }
