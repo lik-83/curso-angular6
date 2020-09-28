@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-vuelos-detalle',
-  templateUrl: './vuelos-detalle.component.html',
-  styleUrls: ['./vuelos-detalle.component.css']
+  selector: 'app-reservas-detalle',
+  templateUrl: './reservas-detalle.component.html',
+  styleUrls: ['./reservas-detalle.component.css']
 })
-export class VuelosDetalleComponent implements OnInit {
+export class ReservasDetalleComponent implements OnInit {
+
   id: any;
 
   constructor(private route: ActivatedRoute) {
     route.params.subscribe(params => { this.id = params['id']; });
   }
-  
+
   ngOnInit() {
   }
 
