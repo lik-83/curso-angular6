@@ -5,7 +5,6 @@ app.use(cors());
 app.listen(3000, () => console.log("Server running on port 3000"));
 
 var ciudades = [ "Paris", "Barcelona", "Barranquilla", "Montevideo", "Santiago de Chile", "Mexico DF", "Nueva York" ];
-app.get("/url", (req, res, next) => res.json(ciudades));
 app.get("/ciudades", (req, res, next) => res.json(ciudades.filter((c)=> c.toLowerCase().indexOf(req.query.q.toString().toLowerCase()) > -1)));
 
 var misDestinos = [];

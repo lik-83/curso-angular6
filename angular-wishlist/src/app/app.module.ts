@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { StoreModule as NgRxStoreModule, ActionReducerMap } from '@ngrx/store';
@@ -59,6 +59,14 @@ const routes: Routes = [
   }
 ];
 
+export interface AppConfig {
+  apiEndpoint: String;
+}
+const APP_CONFIG_VALUE: AppConfig = {
+  apiEndpoint: 'http://localhost:3000'
+};
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +93,8 @@ const routes: Routes = [
   ],
   providers: [
     AuthService,
-    UsuarioLogueadoGuard
+    UsuarioLogueadoGuard,
+    { provide: APP_CONFIG, useValue: APP_CONFIG_VALUE },
   ],
   bootstrap: [AppComponent]
 })
