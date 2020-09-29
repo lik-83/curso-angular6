@@ -1,7 +1,7 @@
 import { DestinoViaje } from './destino-viaje.model';
 import { Store } from '@ngrx/store';
 import { NuevoDestinoAction, ElegidoFavoritoAction } from './destinos-viajes-state.model';
-import { AppState, APP_CONFIG, AppConfig } from '../app.module';
+import { AppState, APP_CONFIG, AppConfig, db } from '../app.module';
 import { Injectable, Inject, forwardRef } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 
@@ -29,6 +29,9 @@ export class DestinosApiClient {
     this.http.request(req).subscribe((data: HttpResponse<{}>) => {
       if (data.status === 200) {
         this.store.dispatch(new NuevoDestinoAction(d));
+        const myDb = db;
+        myDb.destinos.add(d);
+        myDb.destinos.toArray().then(destinos => console.log(destinos))
       }
     });
   }
