@@ -28,6 +28,6 @@
                 <span *ngIf="destino.isSelected()">
                         <span ngNonBindanble>- PREFERIDO -</span>
                 </span>
-                <a [routerLink]="['/destino']">Ver detalle</a>
+                <a [routerLink]="['/destino', destino.id]">Ver detalle</a>
         </div> 
 </div>
