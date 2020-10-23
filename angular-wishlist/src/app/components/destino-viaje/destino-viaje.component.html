@@ -1,4 +1,4 @@
-<div class="card-content">
+<div class="card-content" [@esFavorito]="destino.isSelected() ? 'estadoFavorito' : 'estadoNoFavorito'">
         <div class="sticky-top">
                 <button type="button" class="close" aria-label="Close" (click)="borrar()">
                         <span aria-hidden="true">&times;</span>
