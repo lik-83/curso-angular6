@@ -21,7 +21,8 @@
                 *ngFor="let d of all; let i=index" 
                 [destino]="d"
                 [idx]="i+1"
-                (onClicked)="elegido(d)">
+                (onClicked)="elegido(d)"
+                appEspiame>
         </app-destino-viaje>
   </div>
 

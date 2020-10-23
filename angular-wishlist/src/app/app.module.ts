@@ -28,6 +28,8 @@ import { HttpClientModule, HttpClient, HttpHeaders, HttpRequest, HttpResponse } 
 import { DestinoViaje } from './models/destino-viaje.model';
 import { Observable, from } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
+import { EspiameDirective } from './espiame.directive';
+import { TrackearClickDirective } from './trackear-click.directive';
 
 export interface AppState {
   destinos: DestinosViajesState
@@ -164,7 +166,9 @@ function HttpLoaderFactory(http: HttpClient) {
     VuelosComponent,
     VuelosMainComponent,
     VuelosMasInfoComponent,
-    VuelosDetalleComponent
+    VuelosDetalleComponent,
+    EspiameDirective,
+    TrackearClickDirective
   ],
   imports: [
     BrowserModule,
